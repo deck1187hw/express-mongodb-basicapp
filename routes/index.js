@@ -12,6 +12,7 @@ router.get('/helloworld', function(req, res) {
 });
 
 
+
 /* GET Userlist page. */
 router.get('/userlist', function(req, res) {
     var db = req.db;
@@ -22,6 +23,8 @@ router.get('/userlist', function(req, res) {
         });
     });
 });
+
+
 
 
 /* GET New User page. */
@@ -59,6 +62,20 @@ router.post('/adduser', function(req, res) {
     });
 });
 
+// Single user page
+
+router.get('/usersingle/:id', function(req, res) {
+	console.log(req.params.id);
+
+	var db = req.db;
+	var collection = db.get('usercollection');
+	collection.find( { _id: req.params.id }, function(err,doc){
+		console.log(doc);
+		res.render('usersingle', { user: doc });
+	});
+
+    
+});
 
 
 module.exports = router;
