@@ -1,0 +1,6 @@
+extends layout
+
+block content
+    h1= user[0].username
+    p Welcome to #{user[0].email}
+    a #[a(href="/userlist") <- Go Back #[span]]
